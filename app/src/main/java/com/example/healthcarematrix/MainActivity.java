@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 v1.stopPlayback();
                 startActivity(new Intent(MainActivity.this,sessionActivity.class));
+                finish();
 
             }
         });

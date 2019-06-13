@@ -20,7 +20,7 @@ public class sessionActivity extends AppCompatActivity {
 
     VideoView v1;
     Button btnenter,btnrestart;
-    EditText txtanswer;
+
 
 
     @Override
@@ -47,42 +47,31 @@ public class sessionActivity extends AppCompatActivity {
         Uri uri = Uri.parse(videopath);
         btnenter = findViewById(R.id.btnEnter);
         btnrestart = findViewById(R.id.btnRestart);
-        txtanswer = findViewById(R.id.txtanswer);
+
         //Enter Button Code---------------------------------
 
         btnenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(sessionActivity.this,QuestionActivity.class));
+                finish();
             }
         });
         //--------------------------------------------------
 
 
-
-
         //Restart Button Code-------------------------------
-
         btnrestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v1.stopPlayback();
-                Intent mStartActivity = new Intent(sessionActivity.this, sessionActivity.class);
-                int mPendingIntentId = 123456;
-                PendingIntent mPendingIntent = PendingIntent.getActivity(sessionActivity.this, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager mgr = (AlarmManager)sessionActivity.this.getSystemService(Context.ALARM_SERVICE);
-                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 10, mPendingIntent);
-                System.exit(0);
+                startActivity(new Intent(sessionActivity.this,MainActivity.class));
+                finish();
             }
         });
+        //--------------------------------------------------
 
 
-        //Video Array Code--------------------------------------
-
-
-
-
-        //Video Loop
         v1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(MediaPlayer mp) {
                 v1.start(); //need to make transition seamless.
