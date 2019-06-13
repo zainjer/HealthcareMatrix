@@ -27,27 +27,33 @@ public class MainActivity extends AppCompatActivity {
 
         //To make Landscape layout
 //******************************************************
-       setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         setContentView(R.layout.activity_main);
 
-        start = findViewById(R.id.btnRestart);
-        v1 = findViewById(R.id.loopingVideoView);
-        String videopath = "android.resource://" + getPackageName() + "/" + R.raw.videoplayback;
-        Uri uri = Uri.parse(videopath);
 
+//******************************************************
+        //Beginning Code
+//******************************************************
+        start = findViewById(R.id.btnRestart); //Start button object
+        v1 = findViewById(R.id.loopingVideoView); //VideoView object
 
-        //Video Loop
-        v1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            public void onCompletion(MediaPlayer mp) {
-                v1.start(); //need to make transition seamless.
-            }
-        });
-
+        //Code for Video****************************************************************
+        String videopath = "android.resource://" + getPackageName() + "/" + R.raw.videoplayback; //Introduction Video Path
+        Uri uri = Uri.parse(videopath); //Introduction video URI
+            //Video Loop-----------------------------------------
+            v1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mp) {
+                    v1.start(); //need to make transition seamless.
+                }
+            });
+            //---------------------------------------------------
         v1.setVideoURI(uri);
         v1.requestFocus();
         v1.start();
+        //*****************************************************************************
 
+        //Start Button Click Event------------------------------
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,5 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        //------------------------------------------------------
     }
 }
