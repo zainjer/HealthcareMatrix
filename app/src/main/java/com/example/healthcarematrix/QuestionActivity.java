@@ -9,7 +9,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,11 +59,53 @@ public class QuestionActivity extends AppCompatActivity {
             public void onClick(View v) {
                     if(Checker.QuestionNumber>=5){
 
-                        startActivity(new Intent(QuestionActivity.this, print.class));
+                        startActivity(new Intent(QuestionActivity.this,Print.class));
                         finish();
 
+
+                        //-------------------For 5th Question
+                        int selectedId;
+                        RadioButton rdbtn;
+                        selectedId = rdgender.getCheckedRadioButtonId();
+                        rdbtn = findViewById(selectedId);
+                        Checker.answersArray[5]=  rdbtn.getText().toString();
+                        //Toast.makeText(getApplicationContext(),Checker.answersArray[5],Toast.LENGTH_SHORT).show();
                     }
                     else {
+                        int selectedId;
+                        RadioButton rdbtn;
+                        switch(Checker.QuestionNumber){
+
+                            case 0:
+                                break;
+                            case 1:
+                                selectedId = rdAgeGroup.getCheckedRadioButtonId();
+                                rdbtn = findViewById(selectedId);
+                                Checker.answersArray[1]=  rdbtn.getText().toString();
+                               // Toast.makeText(getApplicationContext(),Checker.answersArray[1],Toast.LENGTH_SHORT).show();
+                                break;
+                            case 2:
+                                Checker.answersArray[2]=txtanswer.getText().toString();
+                              //  Toast.makeText(getApplicationContext(),Checker.answersArray[2],Toast.LENGTH_LONG).show();
+                                break;
+                            case 3:
+                                Checker.answersArray[3]=txtanswer.getText().toString();
+                              //  Toast.makeText(getApplicationContext(),Checker.answersArray[3],Toast.LENGTH_LONG).show();
+                                break;
+                            case 4:
+                                selectedId = rdshit.getCheckedRadioButtonId();
+                                rdbtn = findViewById(selectedId);
+                                Checker.answersArray[4]=  rdbtn.getText().toString();
+                              //  Toast.makeText(getApplicationContext(),Checker.answersArray[4],Toast.LENGTH_SHORT).show();
+                                break;
+                            //---This case is in the if clause-----------------------------------------
+//                            case 5:
+//                                selectedId = rdgender.getCheckedRadioButtonId();
+//                                rdbtn = findViewById(selectedId);
+//                                Checker.answersArray[5]=  rdbtn.getText().toString();
+//                                Toast.makeText(getApplicationContext(),Checker.answersArray[5],Toast.LENGTH_SHORT).show();
+//                                break;
+                        }
                         startActivity(new Intent(QuestionActivity.this, sessionActivity.class));
                         finish();
                     }
@@ -91,7 +135,7 @@ public class QuestionActivity extends AppCompatActivity {
                 rdshit.setVisibility(View.VISIBLE);
                 break;
             case 5:
-                rdAgeGroup.setVisibility(View.VISIBLE);
+                rdgender.setVisibility(View.VISIBLE);
                 break;
         }
     }

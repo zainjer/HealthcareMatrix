@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -21,7 +22,7 @@ public class sessionActivity extends AppCompatActivity {
 
     VideoView v1;
     Button btnenter,btnrestart,btnPlay,btnback;
-
+    TextView currentStep,nextStep;
 
 
     @Override
@@ -49,6 +50,9 @@ public class sessionActivity extends AppCompatActivity {
         btnrestart = findViewById(R.id.btnRestart);
         btnPlay = findViewById(R.id.btnPlay);
         btnback = findViewById(R.id.btnBack);
+        currentStep = findViewById(R.id.txtCurrentStep);
+        nextStep = findViewById(R.id.txtNextStep);
+
 
         //Enter Button Code---------------------------------
 
@@ -93,8 +97,8 @@ public class sessionActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v1.stopPlayback();
-                v1.start();
+                startActivity(new Intent(sessionActivity.this,sessionActivity.class));
+                finish();
             }
         });
 
@@ -103,10 +107,12 @@ public class sessionActivity extends AppCompatActivity {
                 v1.start();
             }
         });
-
+        nextStep.setText(getCurrentStep(Checker.videoNumber+1)+" >>");
+        currentStep.setText(getCurrentStep(Checker.videoNumber));
         v1.setVideoURI(uri);
         v1.requestFocus();
         v1.start();
+
         //-------------------------------------------------------
 
 
@@ -128,6 +134,26 @@ public class sessionActivity extends AppCompatActivity {
                 return Checker.videoPaths[4];
             case 5:
                 return Checker.videoPaths[5];
+        }
+        return "";
+    }
+    public String getCurrentStep(int num){
+        switch (num){
+            case 0:
+                return Checker.StepNames[0];
+            case 1:
+                return Checker.StepNames[1];
+            case 2:
+                return Checker.StepNames[2];
+            case 3:
+                return Checker.StepNames[3];
+            case 4:
+                return Checker.StepNames[4];
+            case 5:
+                return Checker.StepNames[5];
+            case 6:
+                return Checker.StepNames[6];
+
         }
         return "";
     }

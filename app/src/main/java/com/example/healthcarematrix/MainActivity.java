@@ -36,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
 //******************************************************
         //Beginning Code
 //******************************************************
-        Checker.populateVideoPaths(); // To Populate Questions in the Checker Class
-        Checker.populateQuestions();
+        Checker.populater(); // To Populate Questions in the Checker Class
+
+        Checker.StartAnew();
 
         start = findViewById(R.id.btnRestart); //Start button object
         v1 = findViewById(R.id.loopingVideoView); //VideoView object
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 v1.stopPlayback();
                 startActivity(new Intent(MainActivity.this,sessionActivity.class));
+
                 finish();
 
             }
