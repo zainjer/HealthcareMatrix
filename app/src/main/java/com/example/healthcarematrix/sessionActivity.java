@@ -14,12 +14,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class sessionActivity extends AppCompatActivity {
 
     VideoView v1;
-    Button btnenter,btnrestart;
+    Button btnenter,btnrestart,btnPlay,btnback;
 
 
 
@@ -43,22 +44,39 @@ public class sessionActivity extends AppCompatActivity {
         //Beginning Code
 //******************************************************
         v1 = findViewById(R.id.VideoViewArray);
-        String videopath = "android.resource://" + getPackageName() + "/" + R.raw.videoplayback;
-        Uri uri = Uri.parse(videopath);
+        Uri uri = Uri.parse(getVideoPath());
         btnenter = findViewById(R.id.btnEnter);
         btnrestart = findViewById(R.id.btnRestart);
+        btnPlay = findViewById(R.id.btnPlay);
+        btnback = findViewById(R.id.btnBack);
 
         //Enter Button Code---------------------------------
 
         btnenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Checker.QuestionNumber++;
+                Checker.videoNumber++;
                 startActivity(new Intent(sessionActivity.this,QuestionActivity.class));
                 finish();
             }
         });
         //--------------------------------------------------
 
+        //Back button Code----------------------------------
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Checker.videoNumber<=1){
+                    Toast.makeText(getApplicationContext(),"Cannot Go Back",Toast.LENGTH_SHORT).show();
+                }else{
+                    Checker.videoNumber--;
+                    Checker.QuestionNumber--;
+                    startActivity(new Intent(sessionActivity.this,sessionActivity.class));
+                    finish();
+                }
+            }
+        });
 
         //Restart Button Code-------------------------------
         btnrestart.setOnClickListener(new View.OnClickListener() {
@@ -71,10 +89,18 @@ public class sessionActivity extends AppCompatActivity {
         });
         //--------------------------------------------------
 
+        //Play Button Code---------------------------------
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v1.stopPlayback();
+                v1.start();
+            }
+        });
 
         v1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(MediaPlayer mp) {
-                v1.start(); //need to make transition seamless.
+                v1.start();
             }
         });
 
@@ -85,6 +111,25 @@ public class sessionActivity extends AppCompatActivity {
 
 
 
+    }
+    public String getVideoPath(){
+
+        switch (Checker.videoNumber){
+            case 0:
+                return Checker.videoPaths[9];
+
+            case 1:
+                return Checker.videoPaths[1];
+            case 2:
+                return Checker.videoPaths[2];
+            case 3:
+                return Checker.videoPaths[3];
+            case 4:
+                return Checker.videoPaths[4];
+            case 5:
+                return Checker.videoPaths[5];
+        }
+        return "";
     }
 
 }

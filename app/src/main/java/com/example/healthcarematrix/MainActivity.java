@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,12 +36,14 @@ public class MainActivity extends AppCompatActivity {
 //******************************************************
         //Beginning Code
 //******************************************************
+        Checker.populateVideoPaths(); // To Populate Questions in the Checker Class
+        Checker.populateQuestions();
+
         start = findViewById(R.id.btnRestart); //Start button object
         v1 = findViewById(R.id.loopingVideoView); //VideoView object
 
         //Code for Video****************************************************************
-        String videopath = "android.resource://" + getPackageName() + "/" + R.raw.videoplayback; //Introduction Video Path
-        Uri uri = Uri.parse(videopath); //Introduction video URI
+        Uri uri = Uri.parse(Checker.videoPaths[0]); //Making video URI
             //Video Loop-----------------------------------------
             v1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 public void onCompletion(MediaPlayer mp) {
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         v1.setVideoURI(uri);
         v1.requestFocus();
         v1.start();
+
         //*****************************************************************************
 
         //Start Button Click Event------------------------------
