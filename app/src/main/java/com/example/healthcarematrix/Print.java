@@ -3,6 +3,7 @@ package com.example.healthcarematrix;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -57,18 +59,17 @@ public class Print extends AppCompatActivity {
 
 
         WriteToFile(s1.getSessionID()+".txt",s1.getQuestions(),Checker.answersArray,s1.getSessionID());
+        Toast.makeText(this,"Saved in "+getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
 
-
-       Toast.makeText(this,"Saved in"+getFilesDir(),Toast.LENGTH_LONG).show();
-        //Toast.makeText(this, e.toString()+"", Toast.LENGTH_SHORT).show();
     }
-    public Exception WriteToFile(String filename, String[] question, String[] answers, long ID){
+    public void WriteToFile(String filename, String[] question, String[] answers, long ID){
 
 
         FileOutputStream fos = null;
         FileWriter fileWriter;
         try {
-            fos = openFileOutput("abced.txt",MODE_PRIVATE);
+            //fos = openFileOutput("abcd.txt" ,MODE_APPEND);
+            fos = new FileOutputStream(new File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),filename),true);
             fileWriter = new FileWriter(fos.getFD());
             fileWriter.append("ID");
             fileWriter.append(",");
@@ -86,10 +87,10 @@ public class Print extends AppCompatActivity {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return e;
+            Toast.makeText(this, e.toString()+"", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
-            return e;
+            Toast.makeText(this, e.toString()+"", Toast.LENGTH_SHORT).show();
         } finally {
             if (fos != null) {
                 try {
@@ -99,6 +100,6 @@ public class Print extends AppCompatActivity {
                 }
             }
         }
-    return null;
+
     }
 }
