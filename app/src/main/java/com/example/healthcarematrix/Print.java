@@ -23,7 +23,8 @@ public class Print extends AppCompatActivity {
 
         //To make Landscape layout
 //******************************************************
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+       // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+       
         setContentView(R.layout.activity_print2);
 
         btnFinish = findViewById(R.id.btnFinish);

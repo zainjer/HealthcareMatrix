@@ -31,7 +31,8 @@ public class QuestionActivity extends AppCompatActivity {
 
         //To make Landscape layout
 //******************************************************
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         setContentView(R.layout.activity_question);
         txtQuestions = findViewById(R.id.txtQuestion);
         btnrestart = findViewById(R.id.btnRestart);

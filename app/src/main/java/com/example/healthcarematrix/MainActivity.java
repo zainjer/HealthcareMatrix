@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         //To make Landscape layout
 //******************************************************
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+       // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         setContentView(R.layout.activity_main);
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         Checker.StartAnew();
 
-        start = findViewById(R.id.btnRestart); //Start button object
+        start = findViewById(R.id.btnStart); //Start button object
         v1 = findViewById(R.id.loopingVideoView); //VideoView object
 
         //Code for Video****************************************************************
