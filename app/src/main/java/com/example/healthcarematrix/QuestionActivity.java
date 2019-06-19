@@ -69,7 +69,7 @@ public class QuestionActivity extends AppCompatActivity {
                         RadioButton rdbtn;
                         selectedId = rdgender.getCheckedRadioButtonId();
                         rdbtn = findViewById(selectedId);
-                        Checker.answersArray[5]=  rdbtn.getText().toString();
+                        Checker.answersArray[4]=  rdbtn.getText().toString();
                         //Toast.makeText(getApplicationContext(),Checker.answersArray[5],Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -82,21 +82,21 @@ public class QuestionActivity extends AppCompatActivity {
                             case 1:
                                 selectedId = rdAgeGroup.getCheckedRadioButtonId();
                                 rdbtn = findViewById(selectedId);
-                                Checker.answersArray[1]=  rdbtn.getText().toString();
+                                Checker.answersArray[0]=  rdbtn.getText().toString();
                                // Toast.makeText(getApplicationContext(),Checker.answersArray[1],Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
-                                Checker.answersArray[2]=txtanswer.getText().toString();
+                                Checker.answersArray[1]=txtanswer.getText().toString();
                               //  Toast.makeText(getApplicationContext(),Checker.answersArray[2],Toast.LENGTH_LONG).show();
                                 break;
                             case 3:
-                                Checker.answersArray[3]=txtanswer.getText().toString();
+                                Checker.answersArray[2]=txtanswer.getText().toString();
                               //  Toast.makeText(getApplicationContext(),Checker.answersArray[3],Toast.LENGTH_LONG).show();
                                 break;
                             case 4:
                                 selectedId = rdshit.getCheckedRadioButtonId();
                                 rdbtn = findViewById(selectedId);
-                                Checker.answersArray[4]=  rdbtn.getText().toString();
+                                Checker.answersArray[3]=  rdbtn.getText().toString();
                               //  Toast.makeText(getApplicationContext(),Checker.answersArray[4],Toast.LENGTH_SHORT).show();
                                 break;
                             //---This case is in the if clause-----------------------------------------

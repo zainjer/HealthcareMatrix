@@ -4,7 +4,7 @@ public class Checker {
 
     public static int QuestionNumber=0;
     public static int videoNumber=1;
-    public static String[] answersArray = new String[10];
+    public static String[] answersArray = new String[5];
     public static String[] questionsArray = new String[10];
     public static String[] videoPaths = new String[10];
     public static String[] StepNames = new String[10];
