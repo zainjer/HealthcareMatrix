@@ -35,7 +35,7 @@ public class Print extends AppCompatActivity {
        
         setContentView(R.layout.activity_print2);
 
-        createSessionFile();
+        String path = createSessionFile();
 
 
 
@@ -53,14 +53,14 @@ public class Print extends AppCompatActivity {
 
     }
 
-   public void createSessionFile() {
+   public String createSessionFile() {
 
         SessionData s1 = new SessionData(Checker.answersArray,System.currentTimeMillis());
-
-
-        WriteToFile(s1.getSessionID()+".txt",s1.getQuestions(),Checker.answersArray,s1.getSessionID());
-        Toast.makeText(this,"Saved in "+getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
-
+        String filepath = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)+"/"+s1.getSessionID()+".csv";
+       Toast.makeText(this, filepath, Toast.LENGTH_SHORT).show();
+        WriteToFile(s1.getSessionID()+".csv",s1.getQuestions(),Checker.answersArray,s1.getSessionID());
+       // Toast.makeText(this,"Saved in "+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
+    return filepath;
     }
     public void WriteToFile(String filename, String[] question, String[] answers, long ID){
 
