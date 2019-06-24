@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -17,8 +18,21 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Print extends AppCompatActivity {
+
+import io.palaima.smoothbluetooth.Device;
+import io.palaima.smoothbluetooth.SmoothBluetooth;
+
+
+public class Print extends AppCompatActivity implements SmoothBluetooth.Listener {
+
+    private SmoothBluetooth mSmoothBluetooth;
+
+    private List<Integer> mBuffer = new ArrayList<>();
+    private List<String> mResponseBuffer = new ArrayList<>();
+    private ArrayAdapter<String> mResponsesAdapter;
 
     Button  btnFinish;
     @Override
@@ -32,9 +46,12 @@ public class Print extends AppCompatActivity {
         //To make Landscape layout
 //******************************************************
        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-       
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         setContentView(R.layout.activity_print2);
 
+       //
+        // mSmoothBluetooth.setListener();
         String path = createSessionFile();
 
 
@@ -101,5 +118,66 @@ public class Print extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public void onBluetoothNotSupported() {
+
+    }
+
+    @Override
+    public void onBluetoothNotEnabled() {
+
+    }
+
+    @Override
+    public void onConnecting(Device device) {
+
+    }
+
+    @Override
+    public void onConnected(Device device) {
+
+    }
+
+    @Override
+    public void onDisconnected() {
+
+    }
+
+    @Override
+    public void onConnectionFailed(Device device) {
+
+    }
+
+    @Override
+    public void onDiscoveryStarted() {
+
+    }
+
+    @Override
+    public void onDiscoveryFinished() {
+
+    }
+
+    @Override
+    public void onNoDevicesFound() {
+
+    }
+
+    @Override
+    public void onDevicesFound(List<Device> deviceList, SmoothBluetooth.ConnectionCallback connectionCallback) {
+
+    }
+
+    @Override
+    public void onDataReceived(int data) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSmoothBluetooth.stop();
     }
 }
