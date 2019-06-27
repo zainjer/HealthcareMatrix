@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 v1.stopPlayback();
-               // startActivity(new Intent(MainActivity.this,sessionActivity.class));
-                startActivity(new Intent(MainActivity.this,Print.class));
+                startActivity(new Intent(MainActivity.this,sessionActivity.class));
+                //startActivity(new Intent(MainActivity.this,Print.class));
                 finish();
 
             }

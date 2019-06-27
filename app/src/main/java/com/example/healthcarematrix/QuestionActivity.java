@@ -58,18 +58,16 @@ public class QuestionActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if(Checker.QuestionNumber>=5){
+                    if(Checker.QuestionNumber>=8){
 
                         startActivity(new Intent(QuestionActivity.this,Print.class));
                         finish();
 
 
-                        //-------------------For 5th Question
+                        //-------------------For 8th Question
                         int selectedId;
                         RadioButton rdbtn;
-                        selectedId = rdgender.getCheckedRadioButtonId();
-                        rdbtn = findViewById(selectedId);
-                        Checker.answersArray[4]=  rdbtn.getText().toString();
+                        Checker.answersArray[7]=txtanswer.getText().toString();
                         //Toast.makeText(getApplicationContext(),Checker.answersArray[5],Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -100,12 +98,18 @@ public class QuestionActivity extends AppCompatActivity {
                               //  Toast.makeText(getApplicationContext(),Checker.answersArray[4],Toast.LENGTH_SHORT).show();
                                 break;
                             //---This case is in the if clause-----------------------------------------
-//                            case 5:
-//                                selectedId = rdgender.getCheckedRadioButtonId();
-//                                rdbtn = findViewById(selectedId);
-//                                Checker.answersArray[5]=  rdbtn.getText().toString();
-//                                Toast.makeText(getApplicationContext(),Checker.answersArray[5],Toast.LENGTH_SHORT).show();
-//                                break;
+                            case 5:
+                                selectedId = rdgender.getCheckedRadioButtonId();
+                                rdbtn = findViewById(selectedId);
+                                Checker.answersArray[4]=  rdbtn.getText().toString();
+                                //Toast.makeText(getApplicationContext(),Checker.answersArray[5],Toast.LENGTH_SHORT).show();
+                                break;
+                            case 6:
+                                Checker.answersArray[5]=txtanswer.getText().toString();
+                            case 7:
+                                Checker.answersArray[6]=txtanswer.getText().toString();
+                            case 8:
+                                Checker.answersArray[7]=txtanswer.getText().toString();
                         }
                         startActivity(new Intent(QuestionActivity.this, sessionActivity.class));
                         finish();
@@ -138,6 +142,15 @@ public class QuestionActivity extends AppCompatActivity {
             case 5:
                 rdgender.setVisibility(View.VISIBLE);
                 break;
+            case 6:
+                txtanswer.setVisibility(View.VISIBLE);
+                break;
+            case 7:
+                txtanswer.setVisibility(View.VISIBLE);
+                break;
+            case 8:
+                txtanswer.setVisibility(View.VISIBLE);
+                break;
         }
     }
     public void setQuestion() {
@@ -160,6 +173,12 @@ public class QuestionActivity extends AppCompatActivity {
             case 5:
                 txtQuestions.setText(Checker.questionsArray[5]);
                 break;
+            case 6:
+                txtQuestions.setText(Checker.questionsArray[6]);
+            case 7:
+                txtQuestions.setText(Checker.questionsArray[7]);
+            case 8:
+                txtQuestions.setText(Checker.questionsArray[8]);
         }
     }
 }

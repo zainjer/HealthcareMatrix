@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -26,15 +27,12 @@ import io.palaima.smoothbluetooth.Device;
 import io.palaima.smoothbluetooth.SmoothBluetooth;
 
 
-public class Print extends AppCompatActivity implements SmoothBluetooth.Listener {
+public class Print extends AppCompatActivity {
 
-    private SmoothBluetooth mSmoothBluetooth;
-
-    private List<Integer> mBuffer = new ArrayList<>();
-    private List<String> mResponseBuffer = new ArrayList<>();
-    private ArrayAdapter<String> mResponsesAdapter;
 
     Button  btnFinish;
+    TextView statuss;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,33 +45,34 @@ public class Print extends AppCompatActivity implements SmoothBluetooth.Listener
 //******************************************************
        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         setContentView(R.layout.activity_print2);
 
-       //
-        // mSmoothBluetooth.setListener();
+
         String path = createSessionFile();
-
-
-
         btnFinish = findViewById(R.id.btnFinish);
-
+        statuss = findViewById(R.id.txtStatus);
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(Print.this,MainActivity.class));
                 finish();
-
             }
         });
 
-    }
+        statuss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Print.this,bluetoothstatus.class));
 
+            }
+        });
+    }
    public String createSessionFile() {
 
         SessionData s1 = new SessionData(Checker.answersArray,System.currentTimeMillis());
-        String filepath = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)+"/"+s1.getSessionID()+".csv";
+        //String filepath = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)+"/"+s1.getSessionID()+".csv";
+       String filepath = Environment.getExternalStorageDirectory()+"/"+s1.getSessionID()+".csv";
+
        Toast.makeText(this, filepath, Toast.LENGTH_SHORT).show();
         WriteToFile(s1.getSessionID()+".csv",s1.getQuestions(),Checker.answersArray,s1.getSessionID());
        // Toast.makeText(this,"Saved in "+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
@@ -118,66 +117,5 @@ public class Print extends AppCompatActivity implements SmoothBluetooth.Listener
             }
         }
 
-    }
-
-    @Override
-    public void onBluetoothNotSupported() {
-
-    }
-
-    @Override
-    public void onBluetoothNotEnabled() {
-
-    }
-
-    @Override
-    public void onConnecting(Device device) {
-
-    }
-
-    @Override
-    public void onConnected(Device device) {
-
-    }
-
-    @Override
-    public void onDisconnected() {
-
-    }
-
-    @Override
-    public void onConnectionFailed(Device device) {
-
-    }
-
-    @Override
-    public void onDiscoveryStarted() {
-
-    }
-
-    @Override
-    public void onDiscoveryFinished() {
-
-    }
-
-    @Override
-    public void onNoDevicesFound() {
-
-    }
-
-    @Override
-    public void onDevicesFound(List<Device> deviceList, SmoothBluetooth.ConnectionCallback connectionCallback) {
-
-    }
-
-    @Override
-    public void onDataReceived(int data) {
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mSmoothBluetooth.stop();
     }
 }

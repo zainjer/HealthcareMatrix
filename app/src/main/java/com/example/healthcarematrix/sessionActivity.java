@@ -134,6 +134,12 @@ public class sessionActivity extends AppCompatActivity {
                 return Checker.videoPaths[4];
             case 5:
                 return Checker.videoPaths[5];
+            case 6:
+                return Checker.videoPaths[6];
+            case 7:
+                return Checker.videoPaths[7];
+            case 8:
+                return Checker.videoPaths[8];
         }
         return "";
     }
@@ -153,6 +159,10 @@ public class sessionActivity extends AppCompatActivity {
                 return Checker.StepNames[5];
             case 6:
                 return Checker.StepNames[6];
+            case 7:
+                return Checker.StepNames[7];
+            case 8:
+                return Checker.StepNames[8];
 
         }
         return "";
