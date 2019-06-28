@@ -70,12 +70,12 @@ public class Print extends AppCompatActivity {
    public String createSessionFile() {
 
         SessionData s1 = new SessionData(Checker.answersArray,System.currentTimeMillis());
-        //String filepath = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)+"/"+s1.getSessionID()+".csv";
-       String filepath = Environment.getExternalStorageDirectory()+"/"+s1.getSessionID()+".csv";
+        String filepath = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)+"/"+s1.getSessionID()+".csv";
+       //String filepath = Environment.getExternalStorageDirectory()+"/"+s1.getSessionID()+".csv";
 
-       Toast.makeText(this, filepath, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, filepath, Toast.LENGTH_LONG).show();
         WriteToFile(s1.getSessionID()+".csv",s1.getQuestions(),Checker.answersArray,s1.getSessionID());
-       // Toast.makeText(this,"Saved in "+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
+       //Toast.makeText(this,"Saved in "+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
     return filepath;
     }
     public void WriteToFile(String filename, String[] question, String[] answers, long ID){

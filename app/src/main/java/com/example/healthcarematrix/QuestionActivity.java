@@ -156,7 +156,6 @@ public class QuestionActivity extends AppCompatActivity {
     public void setQuestion() {
         switch (Checker.QuestionNumber){
             case 0:
-
                 break;
             case 1:
                 txtQuestions.setText(Checker.questionsArray[1]);
@@ -175,10 +174,13 @@ public class QuestionActivity extends AppCompatActivity {
                 break;
             case 6:
                 txtQuestions.setText(Checker.questionsArray[6]);
+                break;
             case 7:
                 txtQuestions.setText(Checker.questionsArray[7]);
+                break;
             case 8:
                 txtQuestions.setText(Checker.questionsArray[8]);
+                break;
         }
     }
 }

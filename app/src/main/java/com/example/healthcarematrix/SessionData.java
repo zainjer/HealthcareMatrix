@@ -26,13 +26,17 @@ public class SessionData implements Serializable {
     }
      public String[] getQuestions(){
 
-        String[] questions = new String[5];
+        String[] questions = new String[8];
 
         questions[0] = "Age Group";
         questions[1] = "Body Temperature";
         questions[2] = "Pulse Rate";
         questions[3] = "Feces Type";
         questions[4] = "Gender";
+        questions[5] = "Height";
+        questions[6] = "Weight";
+        questions[7]= "Glucose Level";
+
 
         return questions;
     }
