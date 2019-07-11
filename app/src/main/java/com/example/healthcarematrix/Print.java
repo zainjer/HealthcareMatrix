@@ -1,6 +1,8 @@
 package com.example.healthcarematrix;
 
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Environment;
@@ -30,8 +32,90 @@ import io.palaima.smoothbluetooth.SmoothBluetooth;
 public class Print extends AppCompatActivity {
 
 
+    SmoothBluetooth  mSmoothBluetooth;
     Button  btnFinish;
     TextView statuss;
+    String datastring;
+
+    public SmoothBluetooth.Listener mListener = new SmoothBluetooth.Listener() {
+        @Override
+        public void onBluetoothNotSupported() {
+            Toast.makeText(Print.this, "Bluetooth Not Found", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onBluetoothNotEnabled() {
+            if(BluetoothAdapter.getDefaultAdapter() == null){
+                Toast.makeText(Print.this, "Bluetooth is not supported", Toast.LENGTH_SHORT).show();
+            }else{
+                Intent i = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivity(i);
+            }
+        }
+        @Override
+        public void onConnecting(Device device) {
+            Toast.makeText(Print.this, "Trying To Connect", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onConnected(Device device) {
+            Toast.makeText(Print.this, "Connection Successful!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onDisconnected() {
+            Toast.makeText(Print.this, "Disconnected", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onConnectionFailed(Device device) {
+            Toast.makeText(Print.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onDiscoveryStarted() {
+
+        }
+
+        @Override
+        public void onDiscoveryFinished() {
+
+        }
+
+        @Override
+        public void onNoDevicesFound() {
+
+        }
+
+        @Override
+        public void onDevicesFound(List<Device> deviceList, SmoothBluetooth.ConnectionCallback connectionCallback) {
+
+            String[] btDeviceNames = new String[deviceList.size()];
+            String[] btDeviceMAC = new String[deviceList.size()];
+            int index=0;
+            for(Device d :deviceList){
+                btDeviceNames[index] = d.getName();
+                btDeviceMAC[index] = d.getAddress();
+                index++;
+            }
+            int i =0,pos=999;
+            for (String s:btDeviceNames){
+                if(s.equals("HC-05")){
+                    pos = i;
+                    Toast.makeText(getApplicationContext(),"Found Device to connect",Toast.LENGTH_SHORT);
+                    break;
+                }
+                i++;
+            }
+            connectionCallback.connectTo(deviceList.get(pos));
+        }
+        @Override
+        public void onDataReceived(int data) {
+
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +143,28 @@ public class Print extends AppCompatActivity {
             }
         });
 
+        datastring = "**##";
+        for(int i =0; i<4; i++){
+            datastring = "" + datastring + "\\" +Checker.answersArray[i];
+        }
+        datastring = datastring + "##**";
+
         statuss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Print.this,bluetoothstatus.class));
+                //startActivity(new Intent(Print.this,bluetoothstatus.class));
+                Toast.makeText(getApplicationContext(), datastring, Toast.LENGTH_LONG).show();
 
+                mSmoothBluetooth.send(datastring);
             }
         });
+
+        Context  x = getApplication();
+        mSmoothBluetooth = new SmoothBluetooth(x, SmoothBluetooth.ConnectionTo.OTHER_DEVICE, SmoothBluetooth.Connection.INSECURE, mListener);
+        mSmoothBluetooth.doDiscovery();
+        mSmoothBluetooth.tryConnection();
+
+
     }
    public String createSessionFile() {
 
@@ -73,7 +172,7 @@ public class Print extends AppCompatActivity {
         String filepath = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)+"/"+s1.getSessionID()+".csv";
        //String filepath = Environment.getExternalStorageDirectory()+"/"+s1.getSessionID()+".csv";
 
-        Toast.makeText(this, filepath, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, filepath, Toast.LENGTH_LONG).show();
         WriteToFile(s1.getSessionID()+".csv",s1.getQuestions(),Checker.answersArray,s1.getSessionID());
        //Toast.makeText(this,"Saved in "+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
     return filepath;
