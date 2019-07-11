@@ -72,52 +72,78 @@ public class QuestionActivity extends AppCompatActivity {
                     }
                     else {
                         int selectedId;
+                        boolean Empty = false;
                         RadioButton rdbtn;
                         switch(Checker.QuestionNumber){
 
                             case 0:
                                 break;
                             case 1:
-                                selectedId = rdAgeGroup.getCheckedRadioButtonId();
+                                //gender
+                                selectedId = rdgender.getCheckedRadioButtonId();
                                 rdbtn = findViewById(selectedId);
                                 Checker.answersArray[0]=  rdbtn.getText().toString();
+
                                // Toast.makeText(getApplicationContext(),Checker.answersArray[1],Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
-                                Checker.answersArray[1]=txtanswer.getText().toString();
+                                //age
+                                selectedId = rdAgeGroup.getCheckedRadioButtonId();
+                                rdbtn = findViewById(selectedId);
+                                Checker.answersArray[1]=  rdbtn.getText().toString();
                               //  Toast.makeText(getApplicationContext(),Checker.answersArray[2],Toast.LENGTH_LONG).show();
                                 break;
                             case 3:
+                                //temp
+                                Empty = checkIfEmptyOrNot();
                                 Checker.answersArray[2]=txtanswer.getText().toString();
                               //  Toast.makeText(getApplicationContext(),Checker.answersArray[3],Toast.LENGTH_LONG).show();
                                 break;
                             case 4:
-                                selectedId = rdshit.getCheckedRadioButtonId();
-                                rdbtn = findViewById(selectedId);
-                                Checker.answersArray[3]=  rdbtn.getText().toString();
+                                //weight
+                               Empty = checkIfEmptyOrNot();
+                                Checker.answersArray[3]=txtanswer.getText().toString();
                               //  Toast.makeText(getApplicationContext(),Checker.answersArray[4],Toast.LENGTH_SHORT).show();
                                 break;
-                            //---This case is in the if clause-----------------------------------------
                             case 5:
-                                selectedId = rdgender.getCheckedRadioButtonId();
-                                rdbtn = findViewById(selectedId);
-                                Checker.answersArray[4]=  rdbtn.getText().toString();
+                                //height
+                                Empty = checkIfEmptyOrNot();
+                                Checker.answersArray[4]=txtanswer.getText().toString();
                                 //Toast.makeText(getApplicationContext(),Checker.answersArray[5],Toast.LENGTH_SHORT).show();
                                 break;
                             case 6:
+                                //GlucoMeter
+                                Empty = checkIfEmptyOrNot();
                                 Checker.answersArray[5]=txtanswer.getText().toString();
                             case 7:
+                                //PulseRate
+                                Empty = checkIfEmptyOrNot();
                                 Checker.answersArray[6]=txtanswer.getText().toString();
                             case 8:
-                                Checker.answersArray[7]=txtanswer.getText().toString();
+                                //stool
+                                selectedId = rdshit.getCheckedRadioButtonId();
+                                rdbtn = findViewById(selectedId);
+                                Checker.answersArray[6]=txtanswer.getText().toString();
+
                         }
-                        startActivity(new Intent(QuestionActivity.this, sessionActivity.class));
+
+                        if(!Empty){
+                            startActivity(new Intent(QuestionActivity.this, sessionActivity.class));
                         finish();
+                        }else{
+                            Toast.makeText(QuestionActivity.this, "Empty Answer no Accepted", Toast.LENGTH_SHORT).show();
+                        }
                     }
             }
+
+            private boolean checkIfEmptyOrNot() {
+
+            if(txtanswer.getText().toString().equals(""))
+                return true;
+            else
+                return false;
+            }
         });
-
-
 
     }
 
@@ -128,19 +154,19 @@ public class QuestionActivity extends AppCompatActivity {
         rdAgeGroup.setVisibility(View.INVISIBLE);
         switch (Checker.QuestionNumber){
             case 1:
-                rdAgeGroup.setVisibility(View.VISIBLE);
+                rdgender.setVisibility(View.VISIBLE);
                 break;
             case 2:
-                txtanswer.setVisibility(View.VISIBLE);
+                rdAgeGroup.setVisibility(View.VISIBLE);
                 break;
             case 3:
                 txtanswer.setVisibility(View.VISIBLE);
                 break;
             case 4:
-                rdshit.setVisibility(View.VISIBLE);
+                txtanswer.setVisibility(View.VISIBLE);
                 break;
             case 5:
-                rdgender.setVisibility(View.VISIBLE);
+                txtanswer.setVisibility(View.VISIBLE);
                 break;
             case 6:
                 txtanswer.setVisibility(View.VISIBLE);
@@ -149,7 +175,7 @@ public class QuestionActivity extends AppCompatActivity {
                 txtanswer.setVisibility(View.VISIBLE);
                 break;
             case 8:
-                txtanswer.setVisibility(View.VISIBLE);
+                rdshit.setVisibility(View.VISIBLE);
                 break;
         }
     }

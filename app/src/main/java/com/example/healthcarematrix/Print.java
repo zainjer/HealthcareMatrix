@@ -153,9 +153,28 @@ public class Print extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //startActivity(new Intent(Print.this,bluetoothstatus.class));
-                Toast.makeText(getApplicationContext(), datastring, Toast.LENGTH_LONG).show();
 
-                mSmoothBluetooth.send(datastring);
+              // mSmoothBluetooth.send(datastring);
+                //mSmoothBluetooth.tryConnection();
+        if(mSmoothBluetooth.isConnected()){
+            //mSmoothBluetooth.send("!1 @34 #095 $98 %160 &155 *15 Q1");
+            //mSmoothBluetooth.send("!1@34#095$98%160&155*15Q1");
+
+            mSmoothBluetooth.send("!1");
+            mSmoothBluetooth.send("@34");
+            mSmoothBluetooth.send("#95");
+            mSmoothBluetooth.send("W98");
+            mSmoothBluetooth.send("%160");
+            mSmoothBluetooth.send("&155");
+            mSmoothBluetooth.send("*15");
+            mSmoothBluetooth.send("Q1");
+            Toast.makeText(getApplicationContext(),"Data Sent", Toast.LENGTH_LONG).show();
+        }
+        else{
+            mSmoothBluetooth.tryConnection();
+        }
+
+                //mSmoothBluetooth.send("Areeb");
             }
         });
 
@@ -163,6 +182,7 @@ public class Print extends AppCompatActivity {
         mSmoothBluetooth = new SmoothBluetooth(x, SmoothBluetooth.ConnectionTo.OTHER_DEVICE, SmoothBluetooth.Connection.INSECURE, mListener);
         mSmoothBluetooth.doDiscovery();
         mSmoothBluetooth.tryConnection();
+
 
 
     }
