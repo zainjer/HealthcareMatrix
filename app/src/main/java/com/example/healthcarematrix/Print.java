@@ -160,31 +160,26 @@ public class Print extends AppCompatActivity {
             //mSmoothBluetooth.send("!1 @34 #095 $98 %160 &155 *15 Q1");
             //mSmoothBluetooth.send("!1@34#095$98%160&155*15Q1");
 
-            mSmoothBluetooth.send("!1");
-            mSmoothBluetooth.send("@34");
-            mSmoothBluetooth.send("#95");
-            mSmoothBluetooth.send("W98");
-            mSmoothBluetooth.send("%160");
-            mSmoothBluetooth.send("&155");
-            mSmoothBluetooth.send("*15");
-            mSmoothBluetooth.send("Q1");
+            mSmoothBluetooth.send(Checker.answersArray[0]);
+            mSmoothBluetooth.send(Checker.answersArray[1]);
+            mSmoothBluetooth.send(Checker.answersArray[2]);
+            mSmoothBluetooth.send(Checker.answersArray[3]);
+            mSmoothBluetooth.send(Checker.answersArray[4]);
+            mSmoothBluetooth.send(Checker.answersArray[5]);
+            mSmoothBluetooth.send(Checker.answersArray[6]);
+            mSmoothBluetooth.send(Checker.answersArray[7]);
             Toast.makeText(getApplicationContext(),"Data Sent", Toast.LENGTH_LONG).show();
         }
         else{
             mSmoothBluetooth.tryConnection();
         }
-
                 //mSmoothBluetooth.send("Areeb");
             }
         });
-
         Context  x = getApplication();
         mSmoothBluetooth = new SmoothBluetooth(x, SmoothBluetooth.ConnectionTo.OTHER_DEVICE, SmoothBluetooth.Connection.INSECURE, mListener);
         mSmoothBluetooth.doDiscovery();
         mSmoothBluetooth.tryConnection();
-
-
-
     }
    public String createSessionFile() {
 
@@ -194,7 +189,7 @@ public class Print extends AppCompatActivity {
 
         //Toast.makeText(this, filepath, Toast.LENGTH_LONG).show();
         WriteToFile(s1.getSessionID()+".csv",s1.getQuestions(),Checker.answersArray,s1.getSessionID());
-       //Toast.makeText(this,"Saved in "+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
+       Toast.makeText(this,"Saved in "+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),Toast.LENGTH_LONG).show();
     return filepath;
     }
     public void WriteToFile(String filename, String[] question, String[] answers, long ID){

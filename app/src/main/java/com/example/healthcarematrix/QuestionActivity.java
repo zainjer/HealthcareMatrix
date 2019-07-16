@@ -65,10 +65,18 @@ public class QuestionActivity extends AppCompatActivity {
 
 
                         //-------------------For 8th Question
-                        int selectedId;
+                        int selectedId = rdshit.getCheckedRadioButtonId();
                         RadioButton rdbtn;
-                        Checker.answersArray[7]=txtanswer.getText().toString();
-                        //Toast.makeText(getApplicationContext(),Checker.answersArray[5],Toast.LENGTH_SHORT).show();
+                        rdbtn = findViewById(selectedId);
+                        String s2 =rdbtn.getText().toString();
+                        if(s2.equals("Watery")){
+                            Checker.answersArray[7]="Q1";
+                        }
+                        else if (s2.equals("Frequent Stool")) {
+                            Checker.answersArray[7] = "Q2";
+                        }else{
+
+                        }
                     }
                     else {
                         int selectedId;
@@ -83,38 +91,34 @@ public class QuestionActivity extends AppCompatActivity {
                                 selectedId = rdgender.getCheckedRadioButtonId();
                                 rdbtn = findViewById(selectedId);
                                 String s = rdbtn.getText().toString();
-                                if (s.equals(R.string.male)){
+                                if (s.equals("Male") ){
                                     Checker.answersArray[0]= "!0";
-                                }else if(s.equals(R.string.female)){
+                                }else if(s.equals("Female")){
                                     Checker.answersArray[0]= "!1";
                                 }else {
-                                    Checker.answersArray[0]="";
+                                    Checker.answersArray[0]="!";
                                 }
-                               // Toast.makeText(getApplicationContext(),Checker.answersArray[1],Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
                                 //age
                                 selectedId = rdAgeGroup.getCheckedRadioButtonId();
                                 rdbtn = findViewById(selectedId);
                                 String s1 =rdbtn.getText().toString();
-                                if(s1.equals(R.string.child)){
+                                if(s1.equals("Child")){
                                     Checker.answersArray[1]="@0";
-                                }else if(s1.equals(R.string.adult)) {
+                                }else if(s1.equals("Adult")) {
                                     Checker.answersArray[1]="@1";
                                 }
-                              //  Toast.makeText(getApplicationContext(),Checker.answersArray[2],Toast.LENGTH_LONG).show();
                                 break;
                             case 3:
                                 //temp
                                 Empty = checkIfEmptyOrNot();
                                 Checker.answersArray[2]="#"+txtanswer.getText().toString();
-                              //  Toast.makeText(getApplicationContext(),Checker.answersArray[3],Toast.LENGTH_LONG).show();
                                 break;
                             case 4:
                                 //weight
                                 Empty = checkIfEmptyOrNot();
                                 Checker.answersArray[3]="W"+txtanswer.getText().toString();
-                              //  Toast.makeText(getApplicationContext(),Checker.answersArray[4],Toast.LENGTH_SHORT).show();
                                 break;
                             case 5:
                                 //height
@@ -126,20 +130,22 @@ public class QuestionActivity extends AppCompatActivity {
                                 //Glucometer
                                 Empty = checkIfEmptyOrNot();
                                 Checker.answersArray[5]="&"+txtanswer.getText().toString();
+                                break;
                             case 7:
                                 //PulseRate
                                 Empty = checkIfEmptyOrNot();
                                 Checker.answersArray[6]="*"+txtanswer.getText().toString();
+                                break;
                             case 8:
                                 //stool
                                 selectedId = rdshit.getCheckedRadioButtonId();
                                 rdbtn = findViewById(selectedId);
                                 String s2 =rdbtn.getText().toString();
                                 if(s2.equals(R.string.watery)){
-                                    Checker.answersArray[6]="Q1";
+                                    Checker.answersArray[7]="Q1";
                             }
                                 else if (s2.equals(R.string.frequent_stool)) {
-                                    Checker.answersArray[6] = "Q2";
+                                    Checker.answersArray[7] = "Q2";
                                 }else{
 
                                 }
@@ -149,7 +155,7 @@ public class QuestionActivity extends AppCompatActivity {
                             startActivity(new Intent(QuestionActivity.this, sessionActivity.class));
                         finish();
                         }else{
-                            Toast.makeText(QuestionActivity.this, "Empty Answer no Accepted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(QuestionActivity.this, "Empty answer not Accepted", Toast.LENGTH_SHORT).show();
                         }
                     }
             }
