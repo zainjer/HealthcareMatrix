@@ -149,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/opensansregular"
-            android:text="Male"
+            android:text="@string/male"
             android:textSize="24sp" />
 
         <RadioButton
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/opensansregular"
-            android:text="Female"
+            android:text="@string/female"
             android:textSize="24sp" />
     </RadioGroup>
 
@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/opensansregular"
-            android:text="Watery"
+            android:text="@string/watery"
             android:textSize="24sp" />
 
         <RadioButton
@@ -191,7 +191,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/opensansregular"
-            android:text="Fequent Stool"
+            android:text="@string/frequent_stool"
             android:textSize="24sp" />
     </RadioGroup>
 
@@ -216,7 +216,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/opensansregular"
-            android:text="Child"
+            android:text="@string/child"
             android:textSize="24sp" />
 
         <RadioButton
@@ -225,7 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/opensansregular"
-            android:text="Adult"
+            android:text="@string/adult"
             android:textSize="24sp" />
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>
