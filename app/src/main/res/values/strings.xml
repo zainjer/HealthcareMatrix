@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Healthcare Matrix</string>
+    <string name="app_name">Automated Doc Dispenser</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="introVideo">Hello blank fragment</string>
